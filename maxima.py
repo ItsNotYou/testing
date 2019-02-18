@@ -15,7 +15,21 @@ def find_maxima(x):
 
     idx = []
     for i in range(len(x)):
-        # `i` is a local maximum if the signal decreases before and after it
-        if x[i-1] < x[i] and x[i+1] < x[i]:
-            idx.append(i)
+        # `i` is a local maximum if the signal decreases before and...
+        if x[i-1] < x[i]:
+            # ...it's the last element
+            if i == len(x)-1:
+                idx.append(i)
+            # ...after it
+            elif x[i+1] < x[i]:
+                idx.append(i)
+            # ...the directly following elements are same or smaller
+            elif following_elements_are_same_or_smaller(x, i):
+                idx.append(i)
     return idx
+
+def following_elements_are_same_or_smaller(x, i):
+    for j in range(i+1, len(x)):
+        if x[i] < x[j]:
+            return False
+    return True

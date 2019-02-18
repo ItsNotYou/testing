@@ -20,6 +20,30 @@ def test_sine_wave():
     exp = [16,78]
     assert exp == out
 
+def test_maximum_at_borders():
+    inp = [4, 2, 1, 3, 1, 2]
+    out = find_maxima(inp)
+    exp = [0, 3, 5]
+    assert exp == out
+
+def test_saddle_point():
+    inp = [1, 2, 2, 1]
+    out = find_maxima(inp)
+    exp = [1]
+    assert exp == out
+
+def test_saddle_point_at_end():
+    inp = [1, 2, 2]
+    out = find_maxima(inp)
+    exp = [1]
+    assert exp == out
+
+def test_saddle_point_without_maximum():
+    inp = [1, 2, 2, 3]
+    out = find_maxima(inp)
+    exp = [3]
+    assert exp == out
+
 # additional tests for
 # - max on both borders
 #   x = [4, 2, 1, 3, 1, 2]
